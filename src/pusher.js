@@ -26,8 +26,9 @@ const _request = async (options = {}) => {
 }
 
 exports.submit = async (result) => {
-    const runId = process.env.RUN_ID || ''
-    console.log('Submit with run id:', runId)
+    const obj = Object.assign({}, result)
+    const runId = obj.id || obj.job_id || process.env.JOB_ID || ''
+    console.log('Submit with job id:', runId)
 
     try {
         await _request({
