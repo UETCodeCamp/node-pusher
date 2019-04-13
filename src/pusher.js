@@ -8,9 +8,15 @@ const _store = {
     }
 }
 
+const _parseUrl = (host = '') => {
+    if (!host) return ''
+
+    return host.indexOf('http') === -1 ? `http://${host}` : host
+}
+
 const _getInstance = () => {
     const {settings} = _store
-    const submitHost = settings.host || ''
+    const submitHost = _parseUrl(settings.host)
     const submitToken = settings.token || ''
 
     console.log('Submit app:', submitHost, submitToken)

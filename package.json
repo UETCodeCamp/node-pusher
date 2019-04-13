@@ -1,6 +1,6 @@
 {
   "name": "@uet/pusher",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Runner pusher for whois.",
   "main": "index.js",
   "scripts": {
