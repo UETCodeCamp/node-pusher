@@ -16,4 +16,4 @@ pusher.submit({
 
 ## License
 
-MIT © [UET Code Camp(https://github.com/UETCodeCamp)
+MIT © [UET Code Camp](https://github.com/UETCodeCamp)
