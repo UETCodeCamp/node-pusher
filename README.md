@@ -6,6 +6,7 @@
 ```js
 const pusher = require('@uet/pusher');
 pusher.submit({
+    id: 'job_id',
     is_pass:true, // or false
     message: '',
     std_out: '',
