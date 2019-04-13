@@ -2,7 +2,14 @@
 
 ## Super simple to use.
 
+- Variable environments will be automatically loaded into package:
+```dotenv
+SUBMIT_HOST=http://localhost:2000
+SUBMIT_TOKEN=xxxx
+```
 
+
+- Pushing the job result back to system:
 ```js
 const pusher = require('@uet/pusher');
 pusher.submit({
@@ -11,6 +18,14 @@ pusher.submit({
     message: '',
     std_out: '',
     std_err: ''
+})
+```
+
+- You can change settings to override default settings by the way:
+```js
+pusher.settings({
+    host: 'https://another-host.com',
+    token: 'another_token'
 })
 ```
 

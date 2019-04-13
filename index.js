@@ -1,4 +1,6 @@
-const pusher = require('./src/pusher')
+const {settings, submit} = require('./src/pusher')
 
-exports.submit = pusher.submit
-
+module.exports = {
+    settings,
+    submit
+}

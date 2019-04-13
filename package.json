@@ -1,7 +1,7 @@
 {
   "name": "@uet/pusher",
-  "version": "1.0.7",
-  "description": "",
+  "version": "1.0.8",
+  "description": "Runner pusher for whois.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,11 @@
     "url": "git+https://github.com/UETCodeCamp/node-pusher.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Tu TV",
+    "url": "https://github.com/tutv"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/UETCodeCamp/node-pusher/issues"
   },

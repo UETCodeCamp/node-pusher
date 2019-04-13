@@ -1,17 +1,31 @@
 const request = require('request-promise-native')
 
-const submitHost = process.env.SUBMIT_HOST || 'http://localhost:3000'
-const submitToken = process.env.SUBMIT_TOKEN || '123'
-console.log('Submit app:', submitHost, submitToken)
 
-const instance = request.defaults({
-    baseUrl: submitHost,
-    headers: {
-        'x-token': submitToken
+const _store = {
+    settings: {
+        host: process.env.SUBMIT_HOST || 'http://localhost:3000',
+        token: process.env.SUBMIT_TOKEN || '123'
     }
-})
+}
+
+const _getInstance = () => {
+    const {settings} = _store
+    const submitHost = settings.host || ''
+    const submitToken = settings.token || ''
+
+    console.log('Submit app:', submitHost, submitToken)
+
+    return request.defaults({
+        baseUrl: submitHost,
+        headers: {
+            'x-token': submitToken
+        }
+    })
+}
 
 const _request = async (options = {}) => {
+    const instance = _getInstance()
+
     const defaultOpts = {
         uri: '/runners/submit',
         method: 'POST',
@@ -25,14 +39,33 @@ const _request = async (options = {}) => {
     }
 }
 
-exports.submit = async (result) => {
+/**
+ * @param settings
+ * @return {{host, token}}
+ */
+const _settings = (settings = {}) => {
+    const newSettings = Object.assign({}, settings)
+    const {settings: currentSettings} = _store
+
+    _store.settings = Object.assign({}, currentSettings, newSettings)
+
+    return _store.settings
+}
+
+/**
+ * Submit job result.
+ *
+ * @param result
+ * @return {Promise<boolean>}
+ */
+const _submit = async (result) => {
     const obj = Object.assign({}, result)
     const runId = obj.id || obj.job_id || process.env.JOB_ID || ''
     console.log('Submit with job id:', runId)
 
     try {
         await _request({
-            uri: '/submit',
+            uri: '/runners/submit',
             method: 'POST',
             body: {
                 id: runId,
@@ -48,3 +81,6 @@ exports.submit = async (result) => {
 
     return true
 }
+
+exports.submit = _submit
+exports.settings = _settings
