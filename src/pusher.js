@@ -34,10 +34,11 @@ exports.submit = async (result) => {
         await _request({
             uri: '/submit',
             method: 'POST',
-            data: {
+            body: {
                 id: runId,
                 result,
-            }
+            },
+            json: true
         })
     } catch (error) {
         console.log('Submit error:', error.message)
