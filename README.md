@@ -5,7 +5,7 @@
 - Variable environments will be automatically loaded into package:
 ```dotenv
 SUBMIT_HOST=http://localhost:2000
-SUBMIT_TOKEN=xxxx
+SUBMIT_SECRET=xxxx
 ```
 
 
@@ -25,7 +25,7 @@ pusher.submit({
 ```js
 pusher.settings({
     host: 'https://another-host.com',
-    token: 'another_token'
+    secret: 'another_secret'
 })
 ```
 

@@ -4,7 +4,7 @@ const request = require('request-promise-native')
 const _store = {
     settings: {
         host: process.env.SUBMIT_HOST || 'http://localhost:3000',
-        token: process.env.SUBMIT_TOKEN || '123'
+        secret: process.env.SUBMIT_SECRET || '123'
     }
 }
 
@@ -17,14 +17,14 @@ const _parseUrl = (host = '') => {
 const _getInstance = () => {
     const {settings} = _store
     const submitHost = _parseUrl(settings.host)
-    const submitToken = settings.token || ''
+    const submitSecret = settings.secret || ''
 
-    console.log('Submit app:', submitHost, submitToken)
+    console.log('Submit app:', submitHost, submitSecret)
 
     return request.defaults({
         baseUrl: submitHost,
         headers: {
-            'x-token': submitToken
+            'x-secret': submitSecret
         }
     })
 }
@@ -47,7 +47,7 @@ const _request = async (options = {}) => {
 
 /**
  * @param settings
- * @return {{host, token}}
+ * @return {{host, secret}}
  */
 const _settings = (settings = {}) => {
     const newSettings = Object.assign({}, settings)
